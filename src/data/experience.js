@@ -1,14 +1,22 @@
-// experienceData.js
+/**
+ * Learning timeline — degree, courses and bootcamps. Newest first.
+ * Dates reconciled against public/resume.pdf.
+ */
 export const experiences = [
   {
     title: "BS Computer Science",
-    company: "System Technology Institute",
-    year: "2025",
+    company: "STI College Ortigas-Cainta",
+    year: "2026",
     active: true,
   },
   {
-    title: "Complete Guide Flutter Course",
+    title: "Flutter & Dart – The Complete Guide",
     company: "Maximilian Schwarzmüller",
+    year: "2025",
+  },
+  {
+    title: "The Complete Full-Stack Web Development Bootcamp",
+    company: "Dr. Angela Yu",
     year: "2025",
   },
   {
@@ -17,28 +25,23 @@ export const experiences = [
     year: "2024",
   },
   {
-    title: "Web Development Bootcamp",
-    company: "Dr. Angela Yu",
+    title: "The Ultimate React Course",
+    company: "Jonas Schmedtmann",
     year: "2024",
   },
   {
-    title: "Ultimate React Course",
-    company: "Jonas Schedmedtmann",
-    year: "2024",
-  },
-  {
-    title: "Python Pro Bootcamp",
-    company: "Dr. Angelu Yu",
+    title: "The Complete JavaScript Course",
+    company: "Jonas Schmedtmann",
     year: "2023",
   },
   {
-    title: "Complete Javascript Course",
-    company: "Jonas Schedmedtmann",
-    year: "2022",
+    title: "100 Days of Code: Python Pro Bootcamp",
+    company: "Dr. Angela Yu",
+    year: "2023",
   },
   {
     title: "Hello World! 👋🏻",
     company: "Wrote my first line of code",
-    year: "2023",
+    year: "2022",
   },
 ];

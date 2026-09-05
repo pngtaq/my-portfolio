@@ -1,85 +1,92 @@
-export const frontend = [
-  "Javascript",
-  "Typescript",
-  "React",
-  "Next.js",
-  "Tailwind",
-  "Vite",
-  "Flutter",
-  "Styled Components",
-  "SCSS",
-  "Webpack",
-  "ESLint",
-  "Prettier",
-];
-
-export const backend = ["Node.js", "Python", "Express.js", "NextJS", "FastAPI"];
-
-export const developerTools = [
-  "Git",
-  "Github",
-  "Gitlab",
-  "VS Code",
-  "Android Studio",
-];
-
+/**
+ * Tech stack, aligned with the "Technical Skills" section of public/resume.pdf.
+ * `techStack` is the full list shown on /techstack; the named exports below are
+ * the trimmed highlights shown on the home page.
+ */
 export const techStack = [
+  {
+    title: "Languages",
+    stack: ["JavaScript", "TypeScript", "Python", "Dart"],
+  },
   {
     title: "Frontend",
     stack: [
-      "JavaScript",
-      "TypeScript",
       "React.js",
       "Next.js",
       "React Native",
+      "Flutter",
       "Tailwind CSS",
       "Bootstrap",
-      "Shadcn UI",
+      "Shadcn/ui",
       "Framer Motion",
       "React Markdown",
-      "Flutter",
     ],
   },
   {
-    title: "Backend",
+    title: "Backend & APIs",
     stack: [
       "Node.js",
       "Express.js",
-      "Auth.js",
-      "JWT",
-      "Supabase",
       "RESTful APIs",
+      "Auth.js",
+      "JWT Authentication",
     ],
   },
   {
-    title: "Databases & ORM",
-    stack: ["MongoDB", "Mongoose", "MySQL", "Supabase", "Prisma"],
+    title: "Databases",
+    stack: [
+      "MongoDB",
+      "Mongoose",
+      "MySQL",
+      "Prisma",
+      "Supabase (PostgreSQL)",
+      "Row Level Security",
+    ],
   },
   {
-    title: "AI & Automation",
+    title: "AI-Assisted Development",
     stack: [
-      "LLM Integration",
-      "Cohere API",
-      "n8n",
+      "Claude Pro",
+      "GitHub Copilot",
       "Cursor AI",
       "Windsurf AI",
-      "GitHub Copilot",
+      "Cohere API",
+      "LLM Integration",
     ],
   },
   {
-    title: "Languages",
-    stack: ["JavaScript", "TypeScript", "Python"],
+    title: "Tools & Practices",
+    stack: [
+      "Git",
+      "GitHub",
+      "Postman",
+      "VS Code",
+      "n8n (workflow automation)",
+      "Agile collaboration",
+    ],
   },
   {
-    title: "DevOps & Deployment",
-    stack: ["Vercel", "Render", "CI/CD"],
-  },
-  {
-    title: "Development Tools",
-    stack: ["VS Code", "Git", "GitHub", "Postman"],
-  },
-  {
-    title: "Methodologies",
-    stack: ["Agile Development", "Version Control"],
+    title: "Deployment",
+    stack: ["Vercel", "Render"],
   },
 ];
+
+export const frontend = [
+  "JavaScript",
+  "TypeScript",
+  "React.js",
+  "Next.js",
+  "Tailwind CSS",
+  "Flutter",
+];
+
+export const backend = [
+  "Node.js",
+  "Express.js",
+  "Auth.js",
+  "MongoDB",
+  "Supabase",
+  "REST APIs",
+];
+
+export const developerTools = ["Git", "GitHub", "Postman", "VS Code"];

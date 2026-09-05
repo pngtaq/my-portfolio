@@ -1,13 +1,14 @@
-export default function GithubIcon({ isForDark = false }) {
+export default function GithubIcon({ isForDark = false, className = "w-5 h-5" }) {
   return (
     <svg
-      className={`w-5 h-5 ${
+      className={`${className} ${
         isForDark ? "dark:text-white text-black" : "dark:text-black text-white"
       }`}
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
       y="0px"
       viewBox="0,0,256,256"
+      aria-hidden="true"
     >
       <g
         fillRule="nonzero"

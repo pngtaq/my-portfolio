@@ -1,9 +1,122 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-  --font-geist: "Geist", sans-serif;
+  --font-geist: "Geist", ui-sans-serif, system-ui, sans-serif;
+
   --color-primary: #ffffff;
   --color-primary-dark: #000000;
   --color-text-primary: #000000;
   --color-text-primary-dark: #ffffff;
+
+  /* Surfaces and borders — single source of truth for the card look. */
+  --color-surface: #ffffff;
+  --color-surface-dark: #111111;
+  --color-line: #d1d5db;
+  --color-line-dark: #333333;
+  --color-accent: #2563eb;
+  --color-accent-dark: #3b82f6;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Paints the overscroll area so rubber-band scrolling on iOS does not
+       reveal a white strip while in dark mode. */
+    background-color: var(--color-primary);
+  }
+
+  html.dark {
+    background-color: var(--color-primary-dark);
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* Keeps long unbroken strings (URLs, emails) from forcing sideways
+       scrolling on narrow phones. */
+    overflow-wrap: break-word;
+  }
+
+  /* Visible keyboard focus everywhere, without showing a ring on mouse click. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 0.375rem;
+  }
+
+  html.dark :focus-visible {
+    outline-color: var(--color-accent-dark);
+  }
+}
+
+/*
+ * Entrance animation.
+ *
+ * Deliberately pure CSS rather than a JS `whileInView`: driving it from
+ * JavaScript meant every card sat at opacity 0 until an IntersectionObserver
+ * fired and the animation loop ran to completion. On a throttled or
+ * background tab the page stayed blank. CSS keyframes run on their own
+ * timeline, so the content always ends up visible.
+ */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.reveal {
+  animation: reveal-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/*
+ * Portrait flip. Driven entirely by the `dark` class on <html>, so the
+ * transition is handled by the compositor and needs no JavaScript.
+ */
+.flip-scene {
+  perspective: 1000px;
+}
+
+.flip-inner {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:where(html.dark) .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-face {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-face-back {
+  transform: rotateY(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

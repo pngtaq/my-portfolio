@@ -1,16 +1,25 @@
-export default function RecommendationCard(props) {
-  const { description, name, job } = props;
-
+export default function RecommendationCard({ description, name, job, link }) {
   return (
-    <div className="space-y-3">
-      <p className="text-[13px] font-serif leading-relaxed text-gray-700 dark:text-gray-300 line-clamp-4 tracking-wide font-extralight transition-colors duration-300">
+    <figure className="space-y-3">
+      <blockquote className="text-[13px] leading-relaxed tracking-wide text-gray-700 dark:text-gray-300">
         {description}
-      </p>
+      </blockquote>
 
-      <div className="text-xs border-t border-gray-300 dark:border-gray-700 pt-3 transition-colors duration-300">
-        <p className="font-semibold text-gray-900 dark:text-white">{name}</p>
+      <figcaption className="border-t border-gray-200 pt-3 text-xs dark:border-[#262626]">
+        {link ? (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold hover:underline"
+          >
+            {name}
+          </a>
+        ) : (
+          <p className="font-semibold">{name}</p>
+        )}
         <p className="text-gray-600 dark:text-gray-400">{job}</p>
-      </div>
-    </div>
+      </figcaption>
+    </figure>
   );
 }

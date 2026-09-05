@@ -1,39 +1,32 @@
-import { BriefcaseBusiness } from "lucide-react";
-import { motion } from "motion/react";
-export default function About() {
+import { UserRound } from "lucide-react";
+import Card from "./ui/Card";
+import SectionHeader from "./ui/SectionHeader";
+
+export default function About({ delay = 0 }) {
   return (
-    <motion.section
-      initial={{ y: 24, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeInOut" }}
-      className="border border-gray-300 rounded-xl px-4 py-4 dark:bg-[#111] dark:border-[#333] transition-colors duration-500 hover:shadow-[0_10px_25px_-5px_rgba(0,0,0,0.1)] hover:transition-shadow"
-    >
-      <div className="flex items-center gap-x-2 pb-2">
-        <BriefcaseBusiness className="w-4 h-4 " strokeWidth={1} />
-        <h3 className="font-bold text-lg">About</h3>
+    <Card delay={delay}>
+      <SectionHeader icon={UserRound} title="About" />
+
+      <div className="space-y-4 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+        <p>
+          I'm a full-stack software developer working mainly in JavaScript and
+          TypeScript, with production experience since 2024 building web
+          applications for organizational and government clients using Next.js
+          and Node.js.
+        </p>
+        <p>
+          My work covers the whole path from schema to screen: RESTful APIs,
+          secure authentication and role-based access, SQL and NoSQL databases,
+          and interfaces that hold up on every screen size. I lean on
+          AI-assisted tooling to move faster without giving up on understanding
+          the code I ship.
+        </p>
+        <p>
+          Right now I'm going deeper on Dart and Flutter for polished mobile
+          apps, and on how intelligent systems work so I can apply them where
+          they genuinely help.
+        </p>
       </div>
-      <div className="text-sm space-y-5 leading-relaxed ">
-        <div>
-          As a full-stack software engineer specializing in JavaScript, Python,
-          and Dart, I focus on developing seamless, scalable, and modern
-          applications. When I'm not coding, I immerse myself in books and
-          e-learnings on productivity and the hidden forces that shape our
-          world. I aim to apply both technical expertise and personal growth
-          insights to create innovative solutions.
-        </div>
-        <div>
-          I design and build AI‑powered full stack applications that automate
-          workflows and launch modern web experiences faster. I’ve shipped
-          production‑ready tools for fitness, government, and documentation
-          platforms using technologies like Next.js, TypeScript, and MongoDB.​
-        </div>
-        <div>
-          Right now, I’m learning Dart and Flutter to build polished,
-          high-performance mobile applications while also studying AI more
-          deeply to understand how intelligent systems work and how to apply
-          them effectively.​
-        </div>
-      </div>
-    </motion.section>
+    </Card>
   );
 }

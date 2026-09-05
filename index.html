@@ -2,15 +2,58 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Raison Salvador | Software Engineer</title>
+
+    <title>John Raison Salvador | Full-Stack Software Developer</title>
+    <meta
+      name="description"
+      content="Full-stack software developer building production web and mobile applications with Next.js, TypeScript, React and Node.js. Based in Rizal, Philippines."
+    />
+    <meta name="author" content="John Raison Salvador" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/images/me-light.jpg" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="John Raison Salvador | Full-Stack Software Developer" />
+    <meta
+      property="og:description"
+      content="Full-stack software developer building production web and mobile applications with Next.js, TypeScript, React and Node.js."
+    />
+    <meta property="og:image" content="/images/me-light.jpg" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="John Raison Salvador | Full-Stack Software Developer" />
+    <meta
+      name="twitter:description"
+      content="Full-stack software developer building production web and mobile applications with Next.js, TypeScript, React and Node.js."
+    />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
       rel="stylesheet"
     />
+
+    <!--
+      Applies the saved theme before first paint so dark-mode visitors never see
+      a white flash. Must stay in sync with src/context/ThemeContext.jsx.
+    -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          var dark =
+            saved === "dark" ||
+            (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches);
+          if (dark) document.documentElement.classList.add("dark");
+        } catch (e) {
+          /* localStorage unavailable (private mode) — fall through to light */
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

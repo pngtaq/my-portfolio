@@ -1,13 +1,21 @@
-import { Link } from "react-router-dom";
-
-export default function CertificationTag(props) {
-  const { certificateName, certificateFrom, href } = props;
+export default function CertificationTag({
+  certificateName,
+  certificateFrom,
+  issued,
+  href,
+}) {
   return (
-    <div className="bg-gray-100 px-2 py-1.5 rounded-lg hover:bg-gray-200 dark:bg-black dark:hover:bg-gray-900">
-      <a target="_blank" rel="noopener noreferrer" href={href}>
-        <p className="text-[0.75rem] font-medium">{certificateName}</p>
-        <p className="text-[0.7rem] font-light">{certificateFrom}</p>
-      </a>
-    </div>
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block rounded-lg bg-gray-100 px-2.5 py-2 transition-colors hover:bg-gray-200 dark:bg-[#161616] dark:hover:bg-[#1f1f1f]"
+    >
+      <p className="text-xs font-medium">{certificateName}</p>
+      <p className="mt-0.5 flex items-center justify-between gap-2 text-[11px] text-gray-600 dark:text-gray-400">
+        <span className="min-w-0 truncate">{certificateFrom}</span>
+        {issued ? <span className="shrink-0">{issued}</span> : null}
+      </p>
+    </a>
   );
 }

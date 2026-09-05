@@ -1,22 +1,24 @@
 import { BookOpen } from "lucide-react";
-export default function Hobby() {
-  return (
-    <section className="border border-gray-300 rounded-xl px-4 py-4 dark:bg-[#111] dark:border-[#333] col-span-1 transition-colors duration-500 hover:shadow-[0_10px_25px_-5px_rgba(0,0,0,0.1)] hover:transition-shadow">
-      <div className="flex items-center gap-x-2 pb-2">
-        <BookOpen className="w-4 h-4 " strokeWidth={1} />
-        <h3 className="font-bold text-lg">Beyond Coding</h3>
-      </div>
+import Card from "./ui/Card";
+import SectionHeader from "./ui/SectionHeader";
 
-      <div className="text-sm space-y-3">
+export default function Hobby({ delay = 0 }) {
+  return (
+    <Card delay={delay}>
+      <SectionHeader icon={BookOpen} title="Beyond Coding" />
+
+      <div className="space-y-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
         <p>
-          When not writing code, I dive into books and e-learnings on
-          productivity and the hidden forces that shape our world.
+          Away from the editor I read and take e-learning courses on
+          productivity and the quieter forces that shape how things actually
+          work.
         </p>
         <p>
-          I focus on uncovering principles that drive personal growth and
-          success, aiming to align with deeper truths for greater potential.
+          I'm after the principles underneath — the ones that transfer from a
+          book to a codebase to a team — and I try to put them to work rather
+          than just collect them.
         </p>
       </div>
-    </section>
+    </Card>
   );
 }

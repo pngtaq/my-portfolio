@@ -1,104 +1,106 @@
-import { Users, Link, Mail, Download, ChevronRight } from "lucide-react";
-import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
-import { Link as RouterLink } from "react-router-dom";
+import { ArrowUpRight, Download, Mail, MessageSquare } from "lucide-react";
+import { FaLinkedinIn } from "react-icons/fa";
+
+import Card from "./ui/Card";
 import GithubIcon from "./svg/GithubIcon";
-export default function Contact() {
+import { profile } from "../data/profile";
+
+const CHANNELS = [
+  {
+    key: "email",
+    label: "Email",
+    value: profile.email,
+    href: `mailto:${profile.email}`,
+    external: false,
+    Icon: ({ className }) => (
+      <Mail className={className} strokeWidth={1.5} aria-hidden="true" />
+    ),
+  },
+  {
+    key: "linkedin",
+    label: "LinkedIn",
+    value: profile.linkedinHandle,
+    href: profile.linkedin,
+    external: true,
+    Icon: ({ className }) => <FaLinkedinIn className={className} aria-hidden="true" />,
+  },
+  {
+    key: "github",
+    label: "GitHub",
+    value: profile.githubHandle,
+    href: profile.github,
+    external: true,
+    Icon: ({ className }) => <GithubIcon isForDark={true} className={className} />,
+  },
+  {
+    key: "resume",
+    label: "Resume",
+    value: "Download PDF",
+    href: profile.resume,
+    external: true,
+    Icon: ({ className }) => (
+      <Download className={className} strokeWidth={1.5} aria-hidden="true" />
+    ),
+  },
+];
+
+export default function Contact({ delay = 0 }) {
   return (
-    <section className="p-3 grid grid-cols-1 gap-4 md:grid-cols-4 border border-gray-300 rounded-lg transition-colors duration-500 hover:shadow-[0_10px_25px_-5px_rgba(0,0,0,0.1)] hover:transition-shadow">
-      <div className="font-medium space-y-3">
-        <p className="text-xs flex items-center gap-x-2">
-          <Users className="w-3 h-3" /> <span>A member of</span>
-        </p>
-        <div className="text-[10px] space-y-1">
-          <p className="border border-gray-300 rounded-lg py-2.5 px-2 hover:-translate-y-0.5 ease-in-out transition-transform duration-300">
-            <span>
-              ALPHA : Alliance of Leading Programmers through Heuristic
-              Adaptation
-            </span>
+    <Card delay={delay} interactive={false} className="sm:p-6">
+      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+        <div className="max-w-md">
+          <h2 className="flex items-center gap-x-2 text-lg font-bold sm:text-xl">
+            <MessageSquare className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
+            Let's build something
+          </h2>
+          <p className="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            {profile.availability}, and open to freelance work. The fastest way
+            to reach me is email — I usually reply within a day.
           </p>
-          <p className="border border-gray-300 rounded-lg py-2.5 px-2 hover:-translate-y-0.5 ease-in-out transition-transform duration-300">
-            Zero to Mastery: Community for developers
-          </p>
-        </div>
-      </div>
-      <div className="space-y-3 font-medium">
-        <p className="text-xs flex items-center gap-x-2 ">
-          <Link className="w-2.5 h-2.5" /> <span>Social Links</span>
-        </p>
-        <div className="text-[10px] font-medium space-y-1">
+
           <a
-            href="https://www.facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border rounded-lg border-gray-300 px-3 py-2 flex gap-x-2 items-center hover:-translate-y-0.5 ease-in-out transition-transform duration-300"
+            href={`mailto:${profile.email}`}
+            className="mt-4 inline-flex items-center gap-2 rounded-lg bg-black px-4 py-2.5 text-sm font-medium text-white transition-transform duration-200 hover:-translate-y-0.5 dark:bg-white dark:text-black"
           >
-            <FaFacebookF size={15} />
-            <span>Facebook</span>
-          </a>
-          <a
-            href="https://x.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border rounded-lg border-gray-300 px-3 py-2 flex gap-x-2 items-center hover:-translate-y-0.5 ease-in-out transition-transform duration-300"
-          >
-            <FaTwitter size={15} />
-            <span>Twitter</span>
-          </a>
-          <a
-            href="https://www.instagram.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border rounded-lg border-gray-300 px-3 py-2 flex gap-x-2 items-center hover:-translate-y-0.5 ease-in-out transition-transform duration-300"
-          >
-            <FaInstagram size={15} />
-            <span>Instagram</span>
+            <Mail className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
+            Get in touch
           </a>
         </div>
+
+        {/* Two columns only in the stacked (sm) layout. From md the card turns
+            into a row, so the channels stack vertically beside the copy — which
+            also gives each one enough width to show its value untruncated. */}
+        <ul className="grid w-full grid-cols-1 gap-2 sm:grid-cols-2 md:w-auto md:min-w-[19rem] md:grid-cols-1">
+          {CHANNELS.map(({ key, label, value, href, external, Icon }) => (
+            <li key={key}>
+              <a
+                href={href}
+                {...(external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+                className="group flex items-center gap-3 rounded-xl border border-gray-200 px-3 py-2.5 transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-300 dark:border-[#262626] dark:hover:border-[#3a3a3a]"
+              >
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gray-100 dark:bg-[#1a1a1a]">
+                  <Icon className="h-4 w-4" />
+                </span>
+
+                <span className="min-w-0 flex-1">
+                  <span className="block text-xs font-semibold">{label}</span>
+                  <span className="block truncate text-[11px] text-gray-600 dark:text-gray-400">
+                    {value}
+                  </span>
+                </span>
+
+                <ArrowUpRight
+                  className="h-3.5 w-3.5 shrink-0 text-gray-400 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-black dark:group-hover:text-white"
+                  strokeWidth={1.5}
+                  aria-hidden="true"
+                />
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
-      <div className="space-y-3">
-        <p className="text-xs flex items-center gap-x-2 font-medium">
-          <Users className="w-3 h-3" /> <span>Speaking</span>
-        </p>
-        <div className="p-3 border border-gray-300 rounded-lg text-[10px] space-y-7">
-          <p>
-            Available for speaking at events about software development and
-            emerging technologies
-          </p>
-          <p className="font-medium">Get in touch &gt;</p>
-        </div>
-      </div>
-      <div className="text-[9px] font-medium space-y-2">
-        <div className="py-1.5 px-2 rounded-lg border border-gray-300 hover:-translate-y-0.5 ease-in-out transition-transform duration-300">
-          <p className="flex items-center gap-x-2">
-            <GithubIcon isForDark={true} />
-            <span>Github</span>
-          </p>
-          <div className="flex items-center justify-between">
-            <p>Visit my profile</p>
-            <ChevronRight className="h-3.5 w-3.5 font-thin" strokeWidth={1.5} />
-          </div>
-        </div>
-        <div className="py-1.5 px-2 rounded-lg border border-gray-300 hover:-translate-y-0.5 ease-in-out transition-transform duration-300">
-          <p className="flex items-center gap-x-2">
-            <Mail className="h-3.5 w-3.5 font-thin" strokeWidth={1.5} />
-            <span>Email</span>
-          </p>
-          <div className="flex items-center justify-between">
-            <p>raisonsalvador0@gmail.com</p>
-            <ChevronRight className="h-3.5 w-3.5 font-thin" strokeWidth={1.5} />
-          </div>
-        </div>
-        <div className="py-1.5 px-2 rounded-lg border border-gray-300 hover:-translate-y-0.5 ease-in-out transition-transform duration-300">
-          <p className="flex items-center gap-x-2">
-            <Download className="h-3 w-3 font-thin" strokeWidth={1.5} />
-            <span>Resume</span>
-          </p>
-          <div className="flex items-center justify-between">
-            <p>Download my resume</p>
-            <ChevronRight className="h-3.5 w-3.5 font-thin" strokeWidth={1.5} />
-          </div>
-        </div>
-      </div>
-    </section>
+    </Card>
   );
 }

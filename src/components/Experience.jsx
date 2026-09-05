@@ -1,25 +1,23 @@
-import { experiences } from "../data/experience";
+import { GraduationCap } from "lucide-react";
+import Card from "./ui/Card";
+import SectionHeader from "./ui/SectionHeader";
 import ExperienceTag from "./ui/ExperienceTag";
-import { BriefcaseBusiness } from "lucide-react";
-export default function Experience() {
+import { experiences } from "../data/experience";
+
+export default function Experience({ delay = 0, className = "" }) {
   return (
-    <section className="border border-gray-300 rounded-xl px-4 py-4 dark:bg-[#111] dark:border-[#333] duration-500 hover:duration-200 hover:shadow-[0_10px_25px_-5px_rgba(0,0,0,0.1)] hover:-translate-y-0.5 ease-in-out transition-all">
-      <div className="flex items-center gap-x-2 pb-2">
-        <BriefcaseBusiness className="w-4 h-4 " strokeWidth={1} />
-        <h3 className="font-bold text-lg">Courses \ Bootcamps</h3>
-      </div>
-      <div className="relative space-y-5">
-        <div className="absolute left-1.75 top-1 h-full w-px bg-gray-200 dark:bg-gray-800" />
-        {experiences.map(({ title, company, year, active }, i) => (
+    <Card delay={delay} className={className}>
+      <SectionHeader icon={GraduationCap} title="Learning Journey" />
+
+      <ol className="relative space-y-5">
+        {experiences.map((item, index) => (
           <ExperienceTag
-            title={title}
-            company={company}
-            year={year}
-            active={active}
-            key={i}
+            key={`${item.title}-${item.year}`}
+            {...item}
+            isLast={index === experiences.length - 1}
           />
         ))}
-      </div>
-    </section>
+      </ol>
+    </Card>
   );
 }

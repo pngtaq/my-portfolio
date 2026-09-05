@@ -1,5 +1,6 @@
 import About from "./components/About.jsx";
 import Contact from "./components/Contact.jsx";
+import Education from "./components/Education.jsx";
 import Experience from "./components/Experience.jsx";
 import Footer from "./components/Footer.jsx";
 import Hobby from "./components/Hobby.jsx";
@@ -9,60 +10,52 @@ import Projects from "./components/Projects.jsx";
 import RecentCertification from "./components/RecentCertification.jsx";
 import Recommendation from "./components/Recommendation.jsx";
 import TechStack from "./components/TechStack.jsx";
+import WorkExperience from "./components/WorkExperience.jsx";
 
-import { MotionConfig, motion } from "motion/react";
-function App() {
+export default function App() {
   return (
-    <div className="dark:bg-primary-dark dark:text-white min-h-screen font-geist">
-      <div className="max-w-4xl mx-auto px-4 pt-8 space-y-2">
+    <div className="min-h-screen bg-white font-geist text-black dark:bg-primary-dark dark:text-white">
+      <div className="mx-auto max-w-4xl px-4 pt-8">
         <MyImage />
-        <div className="grid gap-2 lg:grid-cols-3">
-          <div className="lg:col-span-2 space-y-2">
-            <About />
-            <TechStack />
+
+        <main className="space-y-3">
+          {/*
+            Both columns are grid items, so they already share the row height.
+            Making them flex columns and letting the last card `grow` means the
+            shorter column's card absorbs the slack instead of leaving a gap of
+            bare page background under it.
+          */}
+          <div className="grid gap-3 lg:grid-cols-3 lg:items-stretch">
+            <div className="flex flex-col gap-3 lg:col-span-2">
+              <About />
+              <WorkExperience delay={0.05} className="lg:grow" />
+            </div>
+
+            <div className="flex flex-col gap-3 lg:col-span-1">
+              <MyQuote />
+              <TechStack delay={0.05} />
+              <Experience delay={0.1} className="lg:grow" />
+            </div>
           </div>
-          <motion.div
-            initial={{ y: 25, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, ease: "easeInOut", delay: 0.1 }}
-            className="lg:col-span-1 space-y-2 "
-          >
-            <MyQuote />
-            <Experience />
-          </motion.div>
-        </div>
-        <MotionConfig>
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-2"
-            initial={{ y: 25, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, ease: "easeInOut", delay: 0.2 }}
-          >
+
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
             <Hobby />
-            <Projects />
-          </motion.div>
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-2"
-            initial={{ y: 25, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, ease: "easeInOut", delay: 0.3 }}
-          >
+            <Projects delay={0.05} />
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
             <RecentCertification />
-            <Recommendation />
-          </motion.div>
-          <motion.div
-            initial={{ y: 25, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, ease: "easeInOut", delay: 0.4 }}
-          >
-            <Contact />
-          </motion.div>
-        </MotionConfig>
+            <Education delay={0.05} />
+          </div>
+
+          {/* Renders only once src/data/recommendations.js has real entries. */}
+          <Recommendation />
+
+          <Contact />
+        </main>
 
         <Footer />
       </div>
     </div>
   );
 }
-
-export default App;

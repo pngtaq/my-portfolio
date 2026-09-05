@@ -1,7 +1,7 @@
-export default function CheckBadge() {
+export default function CheckBadge({ className = "" }) {
   return (
     <svg
-      className="w-4 h-4 mt-1"
+      className={`inline-block w-4 h-4 shrink-0 align-[-0.12em] ${className}`}
       viewBox="0 0 22 22"
       xmlns="http://www.w3.org/2000/svg"
       aria-label="Verified User"

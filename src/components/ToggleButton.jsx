@@ -2,27 +2,42 @@ import { Sun, Moon } from "lucide-react";
 import { useTheme } from "../hooks/useTheme";
 
 export default function ToggleButton() {
-  const { theme, toggleTheme } = useTheme();
-  const isDarkMode = theme === "dark";
+  const { isDark, toggleTheme } = useTheme();
 
+  // Track is h-7.5/w-13 (30x52px). With 1px borders that leaves a 28x50px
+  // well for the 24px knob, so a 0.5 (2px) inset sits evenly on all four
+  // sides. h-7 would have left only 1px above and below.
   return (
     <button
-      className={`border-2 border-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 relative w-6.25  sm:w-11.25 h-6.5 sm:h-6.5 rounded-full transition-colors duration-300 ease-in-out ${
-        isDarkMode ? "bg-gray-500" : "bg-gray-300"
-      }`}
+      type="button"
       onClick={toggleTheme}
+      role="switch"
+      aria-checked={isDark}
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      className={`relative h-7.5 w-11 shrink-0 rounded-full border transition-colors duration-300 ease-in-out min-[360px]:w-13 ${
+        isDark
+          ? "border-[#3a3a3a] bg-[#1f1f1f]"
+          : "border-gray-300 bg-gray-200"
+      }`}
     >
-      <div
-        className={` absolute top-[2.4px] sm:top-px sm:left-0.5 sm:w-5 sm:h-5 left-0.5 w-4.5 h-4.5 rounded-full bg-white shadow-md transition-transform duration-300 ease-in-out flex items-center justify-center ${
-          isDarkMode ? "translate-x-0 sm:translate-x-4.5" : "translate-x-0"
+      {/*
+        Positioned with `left` rather than a fixed translate: `100%` resolves
+        against the track, so the knob keeps an even 0.5 inset on both sides
+        even if the track width changes. A hardcoded translate-x-6 slid it 24px
+        against a 50px inner track and left it flush with the right edge.
+      */}
+      <span
+        className={`absolute top-1/2 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-sm transition-[left] duration-300 ease-in-out ${
+          isDark ? "left-[calc(100%-1.5rem-0.125rem)]" : "left-0.5"
         }`}
       >
-        {isDarkMode ? (
-          <Moon className="w-3 h-3  text-gray-700" />
+        {isDark ? (
+          <Moon className="h-3.5 w-3.5 text-gray-700" aria-hidden="true" />
         ) : (
-          <Sun className="w-3 h-3  text-gray-700" />
+          <Sun className="h-3.5 w-3.5 text-amber-500" aria-hidden="true" />
         )}
-      </div>
+      </span>
     </button>
   );
 }
