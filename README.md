@@ -66,5 +66,18 @@ gitignored — never put multi-megabyte source photos in `public/`.
 
 ## Deployment
 
-Static build; `vercel.json` and `public/_redirects` both rewrite all paths to
-`index.html` so client-side routes survive a direct visit or refresh.
+Static build, hosted on Cloudflare Pages.
+
+| Setting                | Value           |
+| ---------------------- | --------------- |
+| Build command          | `npm run build` |
+| Build output directory | `dist`          |
+| `NODE_VERSION`         | `22`            |
+
+Vite 7 requires Node `^20.19.0 || >=22.12.0`, so the Node version has to be set
+explicitly — Cloudflare's default build image is older and the build fails
+without it.
+
+`public/_redirects` rewrites every path to `index.html`, so client-side routes
+survive a direct visit or a refresh. Without it `/projects` 404s. Cloudflare
+Pages and Netlify both read this file; it is copied into `dist/` by Vite.
