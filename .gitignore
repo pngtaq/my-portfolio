@@ -25,3 +25,6 @@ dist-ssr
 
 # Full-resolution source photos (kept locally, not deployed)
 .originals/
+
+# Claude Code local config
+.claude/
