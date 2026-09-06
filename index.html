@@ -12,6 +12,13 @@
     <meta name="author" content="John Raison Salvador" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!--
+      These two stay JPEG while the page itself uses WebP. Apple touch icons
+      do not accept WebP at all, and LinkedIn's link scraper still refuses it,
+      which would leave a shared portfolio link with no preview image. The
+      in-page portraits are the WebP ones; this file is kept only for these
+      two consumers.
+    -->
     <link rel="apple-touch-icon" href="/images/me-light.jpg" />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />

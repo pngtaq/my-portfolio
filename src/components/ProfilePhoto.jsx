@@ -1,5 +1,7 @@
-const FACE =
-  "portrait__face rounded-2xl object-cover shadow-sm ring-1 ring-gray-200 dark:ring-[#262626]";
+// The radius, ring and shadow live on the container now: the faces carry an
+// alignment transform (see .portrait__face in src/index.css) that would drag
+// their own corners and ring outside the frame.
+const FACE = "portrait__face object-cover";
 
 /**
  * Stacks the light-mode and dark-mode portraits and swaps them on the `dark`
@@ -12,9 +14,11 @@ const FACE =
  */
 export default function ProfilePhoto({ className = "" }) {
   return (
-    <div className={`portrait shrink-0 ${className}`}>
+    <div
+      className={`portrait shrink-0 overflow-hidden rounded-2xl shadow-sm ring-1 ring-gray-200 dark:ring-[#262626] ${className}`}
+    >
       <img
-        src="/images/me-light.jpg"
+        src="/images/me-light.webp"
         alt="John Raison Salvador"
         width={800}
         height={800}
@@ -24,7 +28,7 @@ export default function ProfilePhoto({ className = "" }) {
       />
 
       <img
-        src="/images/me-dark.jpg"
+        src="/images/me-dark.webp"
         alt=""
         aria-hidden="true"
         width={800}

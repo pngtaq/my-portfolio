@@ -7,24 +7,24 @@ export const certificates = [
     certificateName: "Flutter & Dart – The Complete Guide",
     certificateFrom: "Udemy · Maximilian Schwarzmüller",
     issued: "Dec 2025",
-    href: "/certificates/flutter-cert.jpg",
+    href: "/certificates/flutter-cert.webp",
   },
   {
     certificateName: "The Complete Full-Stack Web Development Bootcamp",
     certificateFrom: "Udemy · Dr. Angela Yu",
     issued: "Mar 2025",
-    href: "/certificates/full-stack-cert.jpg",
+    href: "/certificates/full-stack-cert.webp",
   },
   {
     certificateName: "The Complete JavaScript Course: From Zero to Expert",
     certificateFrom: "Udemy · Jonas Schmedtmann",
     issued: "Jun 2023",
-    href: "/certificates/javascript-cert.jpg",
+    href: "/certificates/javascript-cert.webp",
   },
   {
     certificateName: "100 Days of Code: The Complete Python Pro Bootcamp",
     certificateFrom: "Udemy · Dr. Angela Yu",
     issued: "2023",
-    href: "/certificates/python-cert.jpg",
+    href: "/certificates/python-cert.webp",
   },
 ];

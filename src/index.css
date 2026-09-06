@@ -155,8 +155,29 @@ html[data-sweep="light"]::view-transition-new(root) {
   width: 100%;
 }
 
+/*
+ * Alignment nudge, measured off the two files: in the shared 800px frame the
+ * dark portrait's head sits ~15px (1.9%) right of the light one's, which read
+ * as the head stepping sideways as the wipe crossed it.
+ *
+ * The correction is split between the two faces so each only travels half the
+ * distance, which is what keeps the covering scale small. The scale exists
+ * purely to fill the sliver the shift would otherwise open at one edge —
+ * correcting the offset on the dark face alone would have needed ~1.04, making
+ * its head visibly larger and trading one mismatch for another. Both faces get
+ * the same 1.03, so their relative sizes are untouched: the dark head stays
+ * the 1.8% larger it was shot at, which is under a pixel once rendered.
+ *
+ * .portrait clips the overhang, and carries the radius, ring and shadow for
+ * the same reason — on the faces they would be scaled outside the visible box.
+ */
+.portrait__face {
+  transform: translateX(0.94%) scale(1.03);
+}
+
 .portrait__face--dark {
   opacity: 0;
+  transform: translateX(-0.94%) scale(1.03);
 }
 
 :where(html.dark) .portrait__face--dark {
