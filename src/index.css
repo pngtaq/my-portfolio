@@ -75,36 +75,92 @@
 }
 
 /*
- * Portrait flip. Driven entirely by the `dark` class on <html>, so the
- * transition is handled by the compositor and needs no JavaScript.
+ * Theme sweep.
+ *
+ * The switch is a View Transition: the browser snapshots the page before and
+ * after the `dark` class flips, then the new snapshot is wiped in over the old
+ * one. So what travels across the screen is the page's own background, type,
+ * borders and portrait in their new colours — not an overlay panel sitting on
+ * top of the layout. Everything changes on the same edge, at the same time.
+ *
+ * Dark sweeps in from the left; light comes back from the right.
+ * `data-sweep` is set by src/context/ThemeProvider.jsx for the duration.
  */
-.flip-scene {
-  perspective: 1000px;
+@keyframes sweep-in-from-left {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
 }
 
-.flip-inner {
+@keyframes sweep-in-from-right {
+  from {
+    clip-path: inset(0 0 0 100%);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* The default cross-fade would dissolve the two themes into each other behind
+   the wipe. The old snapshot has to sit still and stay opaque. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-image-pair(root) {
+  isolation: auto;
+}
+
+html[data-sweep="dark"]::view-transition-new(root) {
+  animation: sweep-in-from-left var(--sweep-duration) var(--sweep-ease) both;
+}
+
+html[data-sweep="light"]::view-transition-new(root) {
+  animation: sweep-in-from-right var(--sweep-duration) var(--sweep-ease) both;
+}
+
+:root {
+  --sweep-duration: 900ms;
+  --sweep-ease: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/*
+ * Portrait.
+ *
+ * Deliberately left inside the page snapshot rather than given a
+ * `view-transition-name` of its own. On its own group it would have run its own
+ * full-length wipe, which put its edge out of step with the page's for all but
+ * the first and last frame. Sharing the root snapshot means one edge crosses
+ * everything: the photo starts changing the instant the background reaches it
+ * and has finished by the time the background has cleared it, exactly as the
+ * type and borders around it do.
+ *
+ * The two faces are stacked and swapped with no transition of their own — the
+ * swap has to land in the same frame as the class change for the snapshot to
+ * catch it. Both stay mounted so the incoming face is already decoded.
+ */
+.portrait {
   position: relative;
-  height: 100%;
-  width: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-:where(html.dark) .flip-inner {
-  transform: rotateY(180deg);
-}
-
-.flip-face {
+.portrait__face {
   position: absolute;
   inset: 0;
   height: 100%;
   width: 100%;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
 }
 
-.flip-face-back {
-  transform: rotateY(180deg);
+.portrait__face--dark {
+  opacity: 0;
+}
+
+:where(html.dark) .portrait__face--dark {
+  opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
