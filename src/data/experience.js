@@ -1,6 +1,7 @@
 /**
- * Learning timeline — degree, courses and bootcamps. Newest first.
- * Dates reconciled against public/resume.pdf.
+ * Learning timeline — degree, courses, bootcamps and the first professional
+ * role. Newest first. Dates reconciled against public/resume.pdf; the Cyware
+ * entry mirrors the one in work.js.
  */
 export const experiences = [
   {
@@ -8,6 +9,11 @@ export const experiences = [
     company: "STI College Ortigas-Cainta",
     year: "2026",
     active: true,
+  },
+  {
+    title: "Mobile App Developer",
+    company: "Cyware Inc.",
+    year: "2026",
   },
   {
     title: "Flutter & Dart – The Complete Guide",

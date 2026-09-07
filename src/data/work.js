@@ -4,6 +4,17 @@
  */
 export const work = [
   {
+    role: "Full-Stack Web Developer",
+    company: "ServeYourMindPH",
+    period: "Jul 2026 – Aug 2026",
+    stack: ["React", "TypeScript", "Vite", "EmailJS"],
+    link: "https://serveyourmindph.com",
+    highlights: [
+      "Built a single-page marketing site for a mental health advocacy nonprofit, covering its mission, programs, founder profiles and community stories.",
+      "Added a responsive contact form with client-side email delivery (EmailJS), and a token-driven CSS system with clamp()-based fluid typography.",
+    ],
+  },
+  {
     role: "Mobile App Developer",
     company: "Cyware Inc.",
     period: "Jan 2026 – Aug 2026",
@@ -18,7 +29,7 @@ export const work = [
     company: "MCS Accounting",
     period: "Oct 2025 – Nov 2025",
     stack: ["Next.js", "Tailwind CSS", "Supabase", "Supabase Auth"],
-    link: "https://mcs-official.vercel.app",
+    link: "https://mcsaccountingph.com",
     highlights: [
       "Built structured service sections covering business registration, professional practice setup, corporations, partnerships, and financial advisory to help prospective clients understand offerings.",
       "Developed reusable, responsive components to display firm metrics and company/team profile content consistently across devices.",

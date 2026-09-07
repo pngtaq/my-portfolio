@@ -3,6 +3,13 @@
  */
 export const projects = [
   {
+    projectName: "ServeYourMindPH",
+    description:
+      "Single-page site for a mental health advocacy nonprofit, with a backend-free contact form and fluid, token-driven typography.",
+    stack: ["React", "TypeScript", "Vite", "EmailJS"],
+    link: "https://serveyourmindph.com",
+  },
+  {
     projectName: "ECCD Government System",
     description:
       "Role-based government web app that replaced a paper process for tracking and evaluating daycare centers.",
@@ -28,7 +35,7 @@ export const projects = [
     description:
       "Business site for an accounting firm, with structured service sections and reusable responsive components.",
     stack: ["Next.js", "Supabase", "Tailwind CSS"],
-    link: "https://mcs-official.vercel.app",
+    link: "https://mcsaccountingph.com",
   },
   {
     projectName: "Mojito",
