@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  The four indexable routes. Deliberately no <lastmod>, <changefreq> or
+  <priority>: Google ignores the last two outright, and it only trusts lastmod
+  when it is consistently accurate — a hardcoded date in a static file goes
+  stale the moment anything changes, which is worse than omitting it. The job
+  this file has to do is enumerate URLs for discovery, and it does that.
+
+  The 404 route is not listed; it is served with a noindex tag instead.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://raisonsalvador.dev/</loc>
+  </url>
+  <url>
+    <loc>https://raisonsalvador.dev/projects</loc>
+  </url>
+  <url>
+    <loc>https://raisonsalvador.dev/certificates</loc>
+  </url>
+  <url>
+    <loc>https://raisonsalvador.dev/techstack</loc>
+  </url>
+</urlset>

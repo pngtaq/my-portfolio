@@ -50,6 +50,52 @@
       content="Full-stack software developer building production web and mobile applications with Next.js, TypeScript, React and Node.js."
     />
 
+    <!--
+      Person schema. `sameAs` is the field that earns its keep: it is how Google
+      ties this domain to the same person behind the GitHub and LinkedIn
+      profiles, which is most of what helps a name query resolve here.
+
+      Static rather than injected from React, because crawlers read structured
+      data from the raw HTML. Email is left out on purpose — it is already on
+      the page as a mailto link, and repeating it here only makes it easier to
+      scrape for no ranking benefit.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "John Raison Salvador",
+        "url": "https://raisonsalvador.dev/",
+        "image": "https://raisonsalvador.dev/images/me-light.jpg",
+        "jobTitle": "Full-Stack Software Developer",
+        "description": "Full-stack software developer building production web and mobile applications with Next.js, TypeScript, React and Node.js.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Binangonan",
+          "addressRegion": "Rizal",
+          "addressCountry": "PH"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "STI College Ortigas-Cainta"
+        },
+        "knowsAbout": [
+          "Web Development",
+          "React",
+          "Next.js",
+          "TypeScript",
+          "Node.js",
+          "Flutter",
+          "MongoDB",
+          "Supabase"
+        ],
+        "sameAs": [
+          "https://github.com/Pngtaq",
+          "https://www.linkedin.com/in/raisonsalvador"
+        ]
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

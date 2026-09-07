@@ -1,8 +1,16 @@
 import CertificateAndProjectsPageContainer from "../components/CertificateAndProjectsPageContainer";
 import CertificatePageTag from "../components/ui/CertificatePageTag";
 import { certificates } from "../data/certificates";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function CertificatePage() {
+  usePageMeta({
+    title: "Certifications | John Raison Salvador",
+    description:
+      "Courses and bootcamps completed by John Raison Salvador, covering full-stack web development, JavaScript, Python, Flutter and Dart.",
+    path: "/certificates",
+  });
+
   return (
     <CertificateAndProjectsPageContainer
       title="All Certifications"

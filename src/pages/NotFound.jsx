@@ -1,7 +1,14 @@
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function NotFound() {
+  usePageMeta({
+    title: "Page not found | John Raison Salvador",
+    description: "This page doesn't exist or has moved.",
+    noindex: true,
+  });
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-white p-4 font-geist text-black dark:bg-primary-dark dark:text-white">
       <div className="space-y-4 text-center">

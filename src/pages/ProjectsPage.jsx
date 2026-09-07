@@ -1,8 +1,16 @@
 import CertificateAndProjectsPageContainer from "../components/CertificateAndProjectsPageContainer";
 import CertificatePageTag from "../components/ui/CertificatePageTag";
 import { projects } from "../data/projects";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function ProjectsPage() {
+  usePageMeta({
+    title: "Projects | John Raison Salvador",
+    description:
+      "Production web and mobile applications by John Raison Salvador — government systems, AI tools and business sites built with Next.js, React and TypeScript.",
+    path: "/projects",
+  });
+
   return (
     <CertificateAndProjectsPageContainer
       title="All Projects"

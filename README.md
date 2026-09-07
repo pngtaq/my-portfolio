@@ -95,3 +95,22 @@ the `not_found_handling` setting above.
 Social preview images in `index.html` are absolute URLs on the apex domain.
 Scrapers fetch them with no page context, so a root-relative path resolves
 against their own host and the preview comes back blank.
+
+## SEO
+
+`src/hooks/usePageMeta.js` sets the title, description and canonical URL per
+route. This matters because one `index.html` is served for every path, so
+without it every route claimed `rel="canonical"` pointed at the home page —
+which tells Google the other routes are duplicates and can be dropped from the
+index. The 404 route also gets `noindex`, since the SPA fallback answers
+unknown URLs with a 200 and Google would otherwise log a soft 404.
+
+The home page's values stay in `index.html` as static markup. Social scrapers
+(LinkedIn, Facebook, Slack) do not run JavaScript, so they only ever see those;
+Googlebot renders and picks up the per-route values. A shared link to a
+sub-route will show the home page's preview text — fixing that properly needs
+prerendering, which is not worth it at four pages.
+
+`public/robots.txt` points at `public/sitemap.xml`, which lists the four
+indexable routes. `index.html` carries a JSON-LD `Person` block whose `sameAs`
+links the domain to the GitHub and LinkedIn profiles.

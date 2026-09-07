@@ -11,8 +11,16 @@ import RecentCertification from "./components/RecentCertification.jsx";
 import Recommendation from "./components/Recommendation.jsx";
 import TechStack from "./components/TechStack.jsx";
 import WorkExperience from "./components/WorkExperience.jsx";
+import { usePageMeta } from "./hooks/usePageMeta.js";
 
 export default function App() {
+  usePageMeta({
+    title: "John Raison Salvador | Full-Stack Software Developer",
+    description:
+      "Full-stack software developer building production web and mobile applications with Next.js, TypeScript, React and Node.js. Based in Rizal, Philippines.",
+    path: "/",
+  });
+
   return (
     <div className="min-h-screen bg-white font-geist text-black dark:bg-primary-dark dark:text-white">
       <div className="mx-auto max-w-4xl px-4 pt-8">
