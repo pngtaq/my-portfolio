@@ -1,0 +1,23 @@
+{
+  // Static-asset-only Worker: there is no `main`, so Cloudflare serves the
+  // built files in ./dist directly and no Worker script runs per request.
+  //
+  // The name must match the existing Worker (see the deploy log's
+  // /workers/scripts/<name>/versions path) or a second one gets created.
+  "name": "my-portfolio",
+  "compatibility_date": "2025-03-01",
+
+  "assets": {
+    "directory": "./dist",
+
+    // Client-side routing. Any path that does not match a file in ./dist is
+    // served index.html with a 200, so /projects survives a direct visit or a
+    // refresh instead of 404ing.
+    //
+    // This replaces public/_redirects. The classic SPA rule there —
+    // `/*  /index.html  200` — is rejected by Workers Static Assets as an
+    // infinite loop: it normalises `/index.html` back to `/`, which re-matches
+    // `/*` and triggers the same rule again.
+    "not_found_handling": "single-page-application"
+  }
+}

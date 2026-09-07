@@ -66,18 +66,32 @@ gitignored — never put multi-megabyte source photos in `public/`.
 
 ## Deployment
 
-Static build, hosted on Cloudflare Pages.
+Static build served by a Cloudflare **Worker** (Workers Static Assets), on
+`raisonsalvador.dev`. Configuration lives in `wrangler.jsonc`; there is no
+`main`, so no Worker script runs per request — Cloudflare serves `dist/`
+directly.
 
 | Setting                | Value           |
 | ---------------------- | --------------- |
 | Build command          | `npm run build` |
-| Build output directory | `dist`          |
+| Deploy command         | `npx wrangler deploy` |
 | `NODE_VERSION`         | `22`            |
 
 Vite 7 requires Node `^20.19.0 || >=22.12.0`, so the Node version has to be set
 explicitly — Cloudflare's default build image is older and the build fails
 without it.
 
-`public/_redirects` rewrites every path to `index.html`, so client-side routes
-survive a direct visit or a refresh. Without it `/projects` 404s. Cloudflare
-Pages and Netlify both read this file; it is copied into `dist/` by Vite.
+Client-side routing comes from `assets.not_found_handling` in `wrangler.jsonc`,
+set to `single-page-application`: any path with no matching file in `dist/` is
+served `index.html` with a 200, so `/projects` survives a direct visit or a
+refresh.
+
+Do **not** reintroduce `public/_redirects` with the usual `/*  /index.html  200`
+SPA rule. Workers Static Assets rejects it at deploy time as an infinite loop —
+it normalises `/index.html` back to `/`, which re-matches `/*` and triggers the
+same rule again. That rule is a Pages/Netlify idiom; the Worker equivalent is
+the `not_found_handling` setting above.
+
+Social preview images in `index.html` are absolute URLs on the apex domain.
+Scrapers fetch them with no page context, so a root-relative path resolves
+against their own host and the preview comes back blank.
