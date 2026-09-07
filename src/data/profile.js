@@ -12,7 +12,7 @@ export const profile = {
   role: "Full-Stack Software Developer",
   secondaryRole: "AI-Augmented Developer",
   location: "Binangonan, Rizal, Philippines",
-  email: "raisonsalvador0@gmail.com",
+  email: "ronchan.dev@gmail.com",
   github: "https://github.com/Pngtaq",
   githubHandle: "github.com/Pngtaq",
   linkedin: "https://www.linkedin.com/in/raisonsalvador",
