@@ -3,6 +3,13 @@
  */
 export const projects = [
   {
+    projectName: "ServeWell",
+    description:
+      "Wellness companion for ServeYourMindPH students: daily check-ins, a guided journal, short lessons and de-identified reports for staff.",
+    stack: ["React", "TypeScript", "Hono", "Cloudflare D1"],
+    link: "https://servewell.pages.dev",
+  },
+  {
     projectName: "ServeYourMindPH",
     description:
       "Single-page site for a mental health advocacy nonprofit, with a backend-free contact form and fluid, token-driven typography.",
